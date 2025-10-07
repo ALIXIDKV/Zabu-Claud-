@@ -1,0 +1,1602 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta property="og:title" content="Zabu Cloud - Premium Hosting Solutions" />
+  <meta property="og:description" content="Solusi hosting cepat, aman, dan siap mendukung kebutuhan Anda. Hosting SA-MP, VPS, Panel Pterodactyl, dan layanan teknis lainnya." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://files.catbox.moe/jblx7c.jpg" />
+  <meta property="og:url" content="https://zabu-cloud.com" />
+  <title>Zabu Cloud - Premium Hosting Solutions</title>
+  <link rel="icon" href="https://files.catbox.moe/jblx7c.jpg" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+  <style>
+    :root {
+      --primary-color: #00ffd5;
+      --primary-dark: #00ccaa;
+      --secondary-color: #6366f1;
+      --accent-color: #8b5cf6;
+      --text-light: #ffffff;
+      --text-muted: #cbd5e1;
+      --text-dark: #1a1a3a;
+      --bg-dark: #0a0a1f;
+      --bg-light: #f8fafc;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --border-color: rgba(255, 255, 255, 0.1);
+      --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      --shadow-xl: 0 35px 60px -12px rgba(0, 0, 0, 0.35);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    /* Loading Screen */
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(rgba(10, 10, 31, 0.8), rgba(10, 10, 31, 0.9)), 
+                  url('https://files.catbox.moe/58ia3d.jpg');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    
+    .loading-content {
+      text-align: center;
+      padding: 2rem;
+      max-width: 500px;
+      width: 90%;
+      background: rgba(15, 15, 35, 0.7);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    .loading-logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      font-weight: 700;
+      color: #000;
+      margin: 0 auto 20px;
+      box-shadow: 0 5px 15px rgba(0, 255, 213, 0.3);
+    }
+    
+    .loading-content h2 {
+      color: var(--text-light);
+      font-size: 2rem;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .loading-content p {
+      color: var(--text-muted);
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+    }
+    
+    .enter-button {
+      padding: 15px 40px;
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+      color: #000;
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 255, 213, 0.3);
+      animation: pulse-glow 2s infinite;
+    }
+    
+    .enter-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 255, 213, 0.5);
+    }
+    
+    .enter-button:active {
+      transform: scale(0.98);
+    }
+    
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 5px 15px rgba(0, 255, 213, 0.3); }
+      50% { box-shadow: 0 5px 20px rgba(0, 255, 213, 0.6); }
+    }
+    
+    body {
+      background: linear-gradient(-45deg, #0a0a1f, #1a1a3a, #2a2a5a, #14142b);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+      color: var(--text-light);
+      overflow-x: hidden;
+      min-height: 100vh;
+      transition: var(--transition);
+    }
+    
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    body.light-mode {
+      background: linear-gradient(-45deg, #f0f4f8, #e2e8f0, #cbd5e1, #f8fafc);
+      color: var(--text-dark);
+    }
+    
+    body.light-mode .card, 
+    body.light-mode .product-card,
+    body.light-mode .payment-card,
+    body.light-mode .testimonial-card,
+    body.light-mode .contact-card,
+    body.light-mode .info-card,
+    body.light-mode .faq-item {
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--text-dark);
+    }
+    
+    body.light-mode .product-title,
+    body.light-mode .payment-name,
+    body.light-mode .faq-question {
+      color: var(--secondary-color);
+    }
+    
+    /* Theme Toggle */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1000;
+      transition: var(--transition);
+      font-size: 24px;
+    }
+    
+    .theme-toggle:hover {
+      transform: scale(1.1) rotate(20deg);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    /* WhatsApp Float Button */
+    .wa-float {
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      bottom: 80px;
+      right: 25px;
+      background: linear-gradient(135deg, #25d366, #128C7E);
+      color: #fff;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 28px;
+      line-height: 60px;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+      z-index: 999;
+      transition: var(--transition);
+      animation: pulse 2s infinite;
+    }
+    
+    .wa-float:hover {
+      transform: scale(1.15);
+      box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    /* Modern Header */
+    header {
+      background: rgba(15, 15, 35, 0.8);
+      backdrop-filter: blur(25px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 2rem 1rem;
+      text-align: center;
+      position: relative;
+    }
+    
+    body.light-mode header {
+      background: rgba(255, 255, 255, 0.8);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    .logo-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    .logo {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      font-weight: 700;
+      color: #000;
+      box-shadow: var(--shadow-lg);
+    }
+    
+    header h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+    }
+    
+    /* Glassmorphism Cards */
+    .card, .product-card, .payment-card, .testimonial-card, .contact-card, .info-card, .faq-item {
+      backdrop-filter: blur(25px);
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Bottom Navigation */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(15, 15, 35, 0.95);
+      backdrop-filter: blur(25px);
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+      z-index: 1000;
+      transition: var(--transition);
+    }
+    
+    body.light-mode .bottom-nav {
+      background: rgba(255, 255, 255, 0.95);
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      padding: 8px 0;
+      text-decoration: none;
+      color: var(--text-muted);
+      transition: var(--transition);
+      position: relative;
+      border-radius: 12px;
+      margin: 0 5px;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    
+    .nav-item.active {
+      color: var(--primary-color);
+    }
+    
+    .nav-item.active::after {
+      content: '';
+      position: absolute;
+      top: -10px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--primary-color);
+    }
+    
+    .nav-icon {
+      font-size: 20px;
+      margin-bottom: 4px;
+      transition: var(--transition);
+    }
+    
+    .nav-text {
+      font-size: 12px;
+      font-weight: 500;
+    }
+    
+    .nav-item:hover {
+      color: var(--primary-color);
+      transform: translateY(-3px);
+    }
+    
+    .nav-item.active .nav-icon {
+      transform: scale(1.2);
+    }
+    
+    /* Touch effect for mobile */
+    .nav-item:active {
+      transform: scale(0.95);
+      transition: transform 0.1s ease;
+    }
+    
+    /* Main Container */
+    .main-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1rem 70px;
+    }
+    
+    .section {
+      display: none;
+      padding: 3rem 1rem;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .section.active {
+      display: block;
+    }
+    
+    .section h1, .section h2 {
+      text-align: center;
+      margin-bottom: 3rem;
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    /* Products Grid */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    
+    .product-card {
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+    
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    }
+    
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-xl);
+    }
+    
+    .product-image-container {
+      width: 100%;
+      height: 200px;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .product-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+    
+    .product-card:hover .product-image {
+      transform: scale(1.05);
+    }
+    
+    .product-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    
+    .product-features {
+      list-style: none;
+      margin-bottom: 2rem;
+    }
+    
+    .product-features li {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+      color: var(--text-muted);
+    }
+    
+    .product-features li::before {
+      content: '✓';
+      color: var(--success);
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+    
+    .product-price {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-light);
+      margin-bottom: 1.5rem;
+    }
+    
+    .buy-button {
+      width: 100%;
+      padding: 1rem 1.5rem;
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+      color: #000;
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 255, 213, 0.2);
+    }
+    
+    .buy-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0, 255, 213, 0.3);
+    }
+    
+    /* Payment Grid */
+    .payment-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    
+    .payment-card {
+      padding: 2rem;
+      position: relative;
+    }
+    
+    .payment-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .payment-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    
+    .payment-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-right: 1rem;
+      color: white;
+    }
+    
+    .dana-icon { background: linear-gradient(135deg, #1087e6, #0066cc); }
+    .ovo-icon { background: linear-gradient(135deg, #4c2b87, #663399); }
+    .gopay-icon { background: linear-gradient(135deg, #00aae5, #0088cc); }
+    .qris-icon { background: linear-gradient(135deg, #ff6b00, #e55a00); }
+    
+    .payment-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-light);
+    }
+    
+    .payment-details {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 1rem;
+      border: 1px solid var(--border-color);
+    }
+    
+    .number-display {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .payment-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.25rem;
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+    
+    .copy-button {
+      padding: 0.5rem 1rem;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .copy-button:hover {
+      transform: scale(1.05);
+    }
+    
+    /* Statistics Section */
+    .stats-section {
+      padding: 4rem 1rem;
+      text-align: center;
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .stat-card {
+      backdrop-filter: blur(25px);
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 3rem 2rem;
+      transition: var(--transition);
+    }
+    
+    .stat-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-xl);
+    }
+    
+    .stat-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+    
+    .stat-label {
+      color: var(--text-muted);
+      font-size: 1.125rem;
+    }
+    
+    /* Testimonials */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .testimonial-card {
+      padding: 2rem;
+    }
+    
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .testimonial-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .testimonial-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #000;
+      margin-right: 1rem;
+    }
+    
+    .testimonial-info h4 {
+      color: var(--text-light);
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    
+    .testimonial-info .service {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+    
+    .stars {
+      color: #fbbf24;
+      margin-bottom: 1rem;
+    }
+    
+    .testimonial-text {
+      color: var(--text-muted);
+      line-height: 1.6;
+      font-style: italic;
+    }
+    
+    /* Contact Cards */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    
+    .contact-card {
+      padding: 2rem;
+      text-align: center;
+    }
+    
+    .contact-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .contact-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    
+    .whatsapp { color: #25D366; }
+    .telegram { color: #0088cc; }
+    .youtube { color: #ff0000; }
+    
+    .contact-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+      margin-top: 1rem;
+    }
+    
+    .whatsapp-btn {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: white;
+    }
+    
+    .telegram-btn {
+      background: linear-gradient(135deg, #0088cc, #005588);
+      color: white;
+    }
+    
+    .youtube-btn {
+      background: linear-gradient(135deg, #ff0000, #cc0000);
+      color: white;
+    }
+    
+    .contact-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Contact Form */
+    .contact-form {
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 2rem;
+      backdrop-filter: blur(25px);
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      color: var(--text-light);
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(0, 255, 213, 0.1);
+    }
+    
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    
+    /* Info Cards */
+    .info-card {
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+    
+    .info-card h3 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+    
+    .info-card p {
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+    
+    /* FAQ */
+    .faq-item {
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      border-left: 4px solid var(--primary-color);
+    }
+    
+    .faq-item:hover {
+      transform: translateX(8px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .faq-question {
+      color: var(--primary-color);
+      font-weight: 700;
+      font-size: 1.125rem;
+      margin-bottom: 0.75rem;
+    }
+    
+    .faq-answer {
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: linear-gradient(135deg, var(--success), #0d9488);
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      font-weight: 500;
+      opacity: 0;
+      transform: translateX(100px);
+      transition: var(--transition);
+      z-index: 1000;
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .toast.show {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    /* Footer */
+    footer {
+      background: rgba(15, 15, 35, 0.8);
+      backdrop-filter: blur(25px);
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+      padding: 2rem;
+      margin-top: 4rem;
+      color: var(--text-muted);
+    }
+    
+    body.light-mode footer {
+      background: rgba(255, 255, 255, 0.8);
+    }
+    
+    /* QR Code */
+    .qr-container {
+      text-align: center;
+      padding: 2rem;
+    }
+    
+    .qr-image {
+      max-width: 250px;
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: var(--shadow-lg);
+    }
+    
+    /* Badge */
+    .badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: linear-gradient(135deg, var(--warning), #d97706);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.75rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+    }
+    
+    /* Testimonial Slider */
+    .testimonial-slider {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+    
+    .swiper-slide {
+      padding: 1rem;
+    }
+    
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.5rem;
+      }
+      
+      .products-grid,
+      .payment-grid,
+      .testimonials-grid,
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .section {
+        padding: 2rem 0.5rem;
+      }
+      
+      .toast {
+        bottom: 1rem;
+        right: 1rem;
+        left: 1rem;
+      }
+      
+      .theme-toggle {
+        top: 10px;
+        right: 10px;
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+      }
+      
+      .wa-float {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+        line-height: 50px;
+        bottom: 70px;
+        right: 20px;
+      }
+      
+      .nav-text {
+        font-size: 10px;
+      }
+      
+      .nav-icon {
+        font-size: 18px;
+      }
+      
+      .loading-content {
+        padding: 1.5rem;
+      }
+      
+      .loading-content h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <div class="loading-content">
+      <div class="loading-logo">Z</div>
+      <h2>Zabu Cloud</h2>
+      <p>Selamat datang di Zabu Cloud</p>
+      <p>Premium Cloud Hosting Solutions</p>
+      <button class="enter-button" id="enter-button">
+        <i class="fas fa-door-open"></i> Masuk
+      </button>
+    </div>
+  </div>
+
+  <!-- Theme Toggle -->
+  <div class="theme-toggle" onclick="toggleTheme()">
+    <i class="fas fa-moon" id="theme-icon"></i>
+  </div>
+
+  <!-- WhatsApp Float Button -->
+  <a href="https://wa.me/6285185984733" class="wa-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <header data-aos="fade-down">
+    <div class="nav-container">
+      <div class="logo-container">
+        <div class="logo">Z</div>
+        <h1>Zabu Cloud</h1>
+      </div>
+      <p>Premium Cloud Hosting Solutions untuk Kebutuhan Digital Anda</p>
+    </div>
+  </header>
+
+  <div class="main-container">
+    <!-- Products Section -->
+    <section id="products" class="section active">
+      <h1><i class="fas fa-server"></i> Produk Premium Kami</h1>
+      
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-image-container">
+            <img src="https://files.catbox.moe/elb2gc.png" alt="Hosting SA-MP Premium" class="product-image">
+          </div>
+          <h3 class="product-title">Hosting SA-MP Premium</h3>
+          <ul class="product-features">
+            <li>Akses Penuh Database & PhpMyAdmin</li>
+            <li>Full Control Panel Management</li>
+            <li>Hosting 100% Milik Anda Sendiri</li>
+            <li>Advanced Anti-DDOS Protection</li>
+            <li>Ping Ultra-Rendah 20-30ms</li>
+            <li>Uptime 99.9% Guarantee</li>
+            <li>VPS Power: 16GB RAM - 8 Core CPU</li>
+            <li>Singapore High-Speed Server</li>
+            <li>Support 24/7 Technical Assistance</li>
+          </ul>
+          <div class="product-price">Mulai dari Rp 25.000/bulan</div>
+          <button class="buy-button" data-product="Hosting SA-MP Premium" data-price="25000">
+            <i class="fas fa-shopping-cart"></i> Pesan Sekarang
+          </button>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image-container">
+            <img src="https://files.catbox.moe/40gx76.png" alt="Jasa Pembuatan Script SA-MP" class="product-image">
+          </div>
+          <h3 class="product-title">Jasa Pembuatan Script SA-MP</h3>
+          <ul class="product-features">
+            <li>Custom Script Sesuai Kebutuhan</li>
+            <li>Optimasi Performance Server</li>
+            <li>Fix Bug & Error Handling</li>
+            <li>Plugin Customization</li>
+            <li>Support Pasca Installasi</li>
+            <li>Dokumentasi Lengkap</li>
+            <li>Testing & Quality Assurance</li>
+          </ul>
+          <div class="product-price">Konsultasi Gratis</div>
+          <button class="buy-button" data-product="Jasa Pembuatan Script SA-MP" data-price="0">
+            <i class="fas fa-code"></i> Hubungi Kami
+          </button>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image-container">
+            <img src="https://files.catbox.moe/pubzx6.png" alt="Upgrade Slot Player SA-MP" class="product-image">
+          </div>
+          <h3 class="product-title">Upgrade Slot Player SA-MP</h3>
+          <ul class="product-features">
+            <li>Penambahan Kapasitas Player</li>
+            <li>Optimasi Performa Multiplayer</li>
+            <li>Scaling Sesuai Kebutuhan</li>
+            <li>Instant Activation</li>
+            <li>Monitoring 24/7</li>
+            <li>Performance Analytics</li>
+          </ul>
+          <div class="product-price">Berbagai Paket Tersedia</div>
+          <button class="buy-button" data-product="Upgrade Slot Player SA-MP" data-price="0">
+            <i class="fas fa-users"></i> Upgrade Sekarang
+          </button>
+        </div>
+
+        <div class="product-card">
+          <span class="badge">Premium</span>
+          <div class="product-image-container">
+            <img src="https://files.catbox.moe/8f392o.jpg" alt="Panel Pterodactyl Premium" class="product-image">
+          </div>
+          <h3 class="product-title">Panel Pterodactyl Premium</h3>
+          <ul class="product-features">
+            <li>High Performance: 16GB RAM - 4 Core</li>
+            <li>AMD Premium Processor</li>
+            <li>Aktif 30 Hari Full Access</li>
+            <li>Garansi 15 Hari Replacement</li>
+            <li>Premium Theme & Plugins</li>
+            <li>Auto Backup System</li>
+            <li>SSL Certificate Included</li>
+          </ul>
+          <div class="product-price">Rp 10.000 - Rp 50.000</div>
+          <button class="buy-button" data-product="Panel Pterodactyl Premium" data-price="10000">
+            <i class="fas fa-tachometer-alt"></i> Pesan Panel
+          </button>
+        </div>
+
+        <div class="product-card">
+          <span class="badge">Best Seller</span>
+          <div class="product-image-container">
+            <img src="https://files.catbox.moe/8f392o.jpg" alt="VPS Zabu Cloud" class="product-image">
+          </div>
+          <h3 class="product-title">VPS Digital Ocean Premium</h3>
+          <ul class="product-features">
+            <li>🔥 VPS DIGITAL OCEAN PREMIUM 🔥</li>
+            <li>⚡ RAM 4GB | 4 Cores → Rp 30.000/Bulan</li>
+            <li>⚡ RAM 8GB | 4 Cores → Rp 40.000/Bulan</li>
+            <li>⚡ RAM 16GB | 4 Cores → Rp 60.000/Bulan</li>
+            <li>⚡ RAM 16GB | 8 Cores → Rp 70.000/Bulan</li>
+            <li>✅ FREE OS Customization</li>
+            <li>✅ FREE Domain .com</li>
+            <li>✅ FREE Bot Setup</li>
+            <li>🛡️ 10-Day Warranty Protection</li>
+          </ul>
+          <div class="product-price">Mulai Rp 30.000/bulan</div>
+          <button class="buy-button" data-product="VPS Zabu Cloud" data-price="30000">
+            <i class="fas fa-cloud"></i> Order VPS
+          </button>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image-container">
+            <img src="https://files.catbox.moe/plnlgd.png" alt="Jasa Technical Support" class="product-image">
+          </div>
+          <h3 class="product-title">Jasa Technical Support</h3>
+          <ul class="product-features">
+            <li>Setup & Configuration</li>
+            <li>Troubleshooting & Debugging</li>
+            <li>Performance Optimization</li>
+            <li>Security Hardening</li>
+            <li>Backup & Recovery</li>
+            <li>24/7 Monitoring Support</li>
+            <li>Emergency Response</li>
+          </ul>
+          <div class="product-price">Konsultasi Gratis</div>
+          <button class="buy-button" data-product="Jasa Technical Support" data-price="0">
+            <i class="fas fa-headset"></i> Dapatkan Bantuan
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Payment Section -->
+    <section id="payment" class="section">
+      <h1><i class="fas fa-credit-card"></i> Metode Pembayaran</h1>
+      
+      <div class="payment-grid">
+        <div class="payment-card">
+          <div class="payment-header">
+            <div class="payment-icon dana-icon">
+              <i class="fas fa-wallet"></i>
+            </div>
+            <h3 class="payment-name">DANA</h3>
+          </div>
+          <div class="payment-details">
+            <div class="number-display">
+              <span class="payment-number">0812-3456-7890</span>
+              <button class="copy-button" data-number="081234567890">
+                <i class="fas fa-copy"></i> Salin
+              </button>
+            </div>
+            <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.875rem;">
+              Atas Nama: ZABU CLOUD
+            </p>
+          </div>
+        </div>
+
+        <div class="payment-card">
+          <div class="payment-header">
+            <div class="payment-icon ovo-icon">
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+            <h3 class="payment-name">OVO</h3>
+          </div>
+          <div class="payment-details">
+            <div class="number-display">
+              <span class="payment-number">0812-3456-7890</span>
+              <button class="copy-button" data-number="081234567890">
+                <i class="fas fa-copy"></i> Salin
+              </button>
+            </div>
+            <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.875rem;">
+              Atas Nama: ZABU CLOUD
+            </p>
+          </div>
+        </div>
+
+        <div class="payment-card">
+          <div class="payment-header">
+            <div class="payment-icon gopay-icon">
+              <i class="fas fa-qrcode"></i>
+            </div>
+            <h3 class="payment-name">GOPAY</h3>
+          </div>
+          <div class="payment-details">
+            <div class="number-display">
+              <span class="payment-number">0812-3456-7890</span>
+              <button class="copy-button" data-number="081234567890">
+                <i class="fas fa-copy"></i> Salin
+              </button>
+            </div>
+            <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.875rem;">
+              Atas Nama: ZABU CLOUD
+            </p>
+          </div>
+        </div>
+
+        <div class="payment-card">
+          <div class="payment-header">
+            <div class="payment-icon qris-icon">
+              <i class="fas fa-qrcode"></i>
+            </div>
+            <h3 class="payment-name">QRIS</h3>
+          </div>
+          <div class="payment-details">
+            <div class="qr-container">
+              <img src="https://files.catbox.moe/8f392o.jpg" alt="QR Code" class="qr-image">
+              <p style="margin-top: 1rem; color: var(--text-muted);">
+                Scan QR Code di atas untuk pembayaran
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section">
+      <h1><i class="fas fa-star"></i> Testimoni Pelanggan</h1>
+      
+      <div class="testimonial-slider">
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="testimonial-card">
+                <div class="testimonial-header">
+                  <div class="testimonial-avatar">A</div>
+                  <div class="testimonial-info">
+                    <h4>Ahmad Rizki</h4>
+                    <span class="service">Hosting SA-MP</span>
+                  </div>
+                </div>
+                <div class="stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">
+                  "Layanan hosting SA-MP dari Zabu Cloud sangat memuaskan! Ping rendah, uptime stabil, dan support responsif. Server saya sekarang berjalan dengan lancar tanpa kendala."
+                </p>
+              </div>
+            </div>
+            
+            <div class="swiper-slide">
+              <div class="testimonial-card">
+                <div class="testimonial-header">
+                  <div class="testimonial-avatar">B</div>
+                  <div class="testimonial-info">
+                    <h4>Budi Santoso</h4>
+                    <span class="service">VPS Digital Ocean</span>
+                  </div>
+                </div>
+                <div class="stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">
+                  "VPS Digital Ocean dari Zabu Cloud memberikan performa yang luar biasa. Harga terjangkau dengan spesifikasi tinggi. Support teknisnya juga sangat membantu 24/7."
+                </p>
+              </div>
+            </div>
+            
+            <div class="swiper-slide">
+              <div class="testimonial-card">
+                <div class="testimonial-header">
+                  <div class="testimonial-avatar">S</div>
+                  <div class="testimonial-info">
+                    <h4>Sari Dewi</h4>
+                    <span class="service">Panel Pterodactyl</span>
+                  </div>
+                </div>
+                <div class="stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">
+                  "Panel Pterodactyl premium dari Zabu Cloud sangat user-friendly dan powerful. Fitur-fiturnya lengkap dan harganya sangat worth it untuk kualitas yang diberikan."
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+      <h1><i class="fas fa-headset"></i> Hubungi Kami</h1>
+      
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="contact-icon whatsapp">
+            <i class="fab fa-whatsapp"></i>
+          </div>
+          <h3>WhatsApp</h3>
+          <p>Dapatkan respon cepat melalui WhatsApp untuk konsultasi dan support teknis.</p>
+          <a href="https://wa.me/6285185984733" class="contact-button whatsapp-btn" target="_blank">
+            <i class="fab fa-whatsapp"></i> Chat Sekarang
+          </a>
+        </div>
+        
+        <div class="contact-card">
+          <div class="contact-icon telegram">
+            <i class="fab fa-telegram"></i>
+          </div>
+          <h3>Telegram</h3>
+          <p>Bergabung dengan komunitas Telegram untuk update terbaru dan diskusi.</p>
+          <a href="https://t.me/zabu_cloud" class="contact-button telegram-btn" target="_blank">
+            <i class="fab fa-telegram"></i> Join Telegram
+          </a>
+        </div>
+        
+        <div class="contact-card">
+          <div class="contact-icon youtube">
+            <i class="fab fa-youtube"></i>
+          </div>
+          <h3>YouTube</h3>
+          <p>Tonton tutorial dan panduan lengkap tentang layanan kami di YouTube.</p>
+          <a href="https://www.youtube.com/@zabu_cloud" class="contact-button youtube-btn" target="_blank">
+            <i class="fab fa-youtube"></i> Subscribe
+          </a>
+        </div>
+      </div>
+      
+      <div class="contact-form">
+        <h3 style="text-align: center; margin-bottom: 2rem; color: var(--primary-color);">Form Konsultasi</h3>
+        <form id="consultation-form">
+          <div class="form-group">
+            <input type="text" placeholder="Nama Lengkap" required>
+          </div>
+          <div class="form-group">
+            <input type="email" placeholder="Email" required>
+          </div>
+          <div class="form-group">
+            <input type="text" placeholder="Subjek" required>
+          </div>
+          <div class="form-group">
+            <textarea placeholder="Pesan Anda" required></textarea>
+          </div>
+          <button type="submit" class="buy-button" style="width: 100%;">
+            <i class="fas fa-paper-plane"></i> Kirim Pesan
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+      <h1><i class="fas fa-info-circle"></i> Tentang Zabu Cloud</h1>
+      
+      <div class="info-card">
+        <h3>Visi & Misi</h3>
+        <p>Zabu Cloud hadir untuk memberikan solusi hosting dan layanan teknis terbaik dengan performa tinggi dan harga terjangkau. Kami berkomitmen untuk mendukung perkembangan bisnis digital Anda dengan infrastruktur yang handal dan support teknis yang responsif.</p>
+        
+        <h3>Mengapa Memilih Zabu Cloud?</h3>
+        <p>Kami memahami bahwa setiap detik downtime berarti kerugian bagi bisnis Anda. Oleh karena itu, kami menyediakan infrastruktur dengan uptime 99.9%, keamanan berlapis, dan tim support yang siap membantu 24/7.</p>
+        
+        <h3>Layanan Unggulan</h3>
+        <p>Dari hosting SA-MP, VPS premium, hingga jasa pembuatan script dan technical support, semua layanan kami dirancang untuk memenuhi kebutuhan spesifik klien dengan kualitas terbaik di kelasnya.</p>
+      </div>
+      
+      <div class="stats-section">
+        <h2 style="margin-bottom: 3rem;">Zabu Cloud dalam Angka</h2>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-server"></i>
+            </div>
+            <div class="stat-number">500+</div>
+            <div class="stat-label">Server Aktif</div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="stat-number">1200+</div>
+            <div class="stat-label">Klien Puas</div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div class="stat-number">99.9%</div>
+            <div class="stat-label">Uptime</div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-headset"></i>
+            </div>
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">Support</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="info-card">
+        <h3>FAQ - Pertanyaan Umum</h3>
+        
+        <div class="faq-item">
+          <div class="faq-question">Bagaimana cara memesan layanan Zabu Cloud?</div>
+          <div class="faq-answer">Anda dapat memesan melalui WhatsApp, Telegram, atau mengisi form konsultasi di website. Tim kami akan merespons dalam waktu 1-2 jam.</div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">Apakah tersedia garansi untuk layanan?</div>
+          <div class="faq-answer">Ya, semua layanan kami dilengkapi dengan garansi sesuai dengan paket yang dipilih. Garansi replacement tersedia untuk VPS dan hosting.</div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">Berapa lama proses aktivasi setelah pembayaran?</div>
+          <div class="faq-answer">Proses aktivasi dilakukan maksimal 1 jam setelah pembayaran dikonfirmasi. Untuk layanan tertentu, aktivasi bisa dilakukan secara instan.</div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">Apakah tersedia layanan custom?</div>
+          <div class="faq-answer">Tentu saja! Kami menyediakan layanan custom untuk memenuhi kebutuhan spesifik Anda. Konsultasikan kebutuhan Anda dengan tim kami.</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Bottom Navigation -->
+  <div class="bottom-nav">
+    <a href="#products" class="nav-item active" data-target="products">
+      <i class="fas fa-server nav-icon"></i>
+      <span class="nav-text">Produk</span>
+    </a>
+    <a href="#payment" class="nav-item" data-target="payment">
+      <i class="fas fa-credit-card nav-icon"></i>
+      <span class="nav-text">Pembayaran</span>
+    </a>
+    <a href="#testimonials" class="nav-item" data-target="testimonials">
+      <i class="fas fa-star nav-icon"></i>
+      <span class="nav-text">Testimoni</span>
+    </a>
+    <a href="#contact" class="nav-item" data-target="contact">
+      <i class="fas fa-headset nav-icon"></i>
+      <span class="nav-text">Kontak</span>
+    </a>
+    <a href="#about" class="nav-item" data-target="about">
+      <i class="fas fa-info-circle nav-icon"></i>
+      <span class="nav-text">Tentang</span>
+    </a>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">Teks berhasil disalin!</div>
+
+  <footer>
+    <p>&copy; 2024 Zabu Cloud. All rights reserved.</p>
+    <p>Premium Cloud Hosting Solutions</p>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script>
+    // Initialize AOS
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true
+    });
+
+    // Initialize Swiper
+    const swiper = new Swiper('.swiper-container', {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: 2,
+        },
+        1024: {
+          slidesPerView: 3,
+        },
+      },
+    });
+
+    // Loading Screen with Manual Entry
+    document.getElementById('enter-button').addEventListener('click', function() {
+      const loadingScreen = document.getElementById('loading-screen');
+      loadingScreen.style.opacity = '0';
+      loadingScreen.style.visibility = 'hidden';
+    });
+
+    // Enhanced Navigation for Mobile
+    document.querySelectorAll('.nav-item').forEach(item => {
+      // Add multiple event listeners for better mobile responsiveness
+      item.addEventListener('click', handleNavClick);
+      item.addEventListener('touchstart', handleNavClick);
+      item.addEventListener('pointerdown', handleNavClick);
+    });
+
+    function handleNavClick(e) {
+      e.preventDefault();
+      
+      // Add active feedback immediately
+      this.style.transform = 'scale(0.95)';
+      
+      // Update active nav item
+      document.querySelectorAll('.nav-item').forEach(nav => {
+        nav.classList.remove('active');
+      });
+      this.classList.add('active');
+      
+      // Show target section
+      const target = this.getAttribute('data-target');
+      document.querySelectorAll('.section').forEach(section => {
+        section.classList.remove('active');
+      });
+      document.getElementById(target).classList.add('active');
+      
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      
+      // Reset transform after animation
+      setTimeout(() => {
+        this.style.transform = '';
+      }, 150);
+    }
+
+    // Copy to Clipboard
+    document.querySelectorAll('.copy-button').forEach(button => {
+      button.addEventListener('click', function() {
+        const number = this.getAttribute('data-number');
+        navigator.clipboard.writeText(number).then(() => {
+          showToast('Nomor berhasil disalin!');
+        });
+      });
+    });
+
+    // Buy Button Handler
+    document.querySelectorAll('.buy-button').forEach(button => {
+      button.addEventListener('click', function() {
+        const product = this.getAttribute('data-product');
+        const price = this.getAttribute('data-price');
+        
+        if (price === '0') {
+          // Redirect to WhatsApp for consultation
+          window.open('https://wa.me/6285185984733?text=Halo%20Zabu%20Cloud,%20saya%20ingin%20konsultasi%20tentang%20' + encodeURIComponent(product), '_blank');
+        } else {
+          // Redirect to WhatsApp for purchase
+          const message = `Halo Zabu Cloud, saya ingin memesan ${product} dengan harga Rp ${price}. Bagaimana cara pemesanannya?`;
+          window.open('https://wa.me/6285185984733?text=' + encodeURIComponent(message), '_blank');
+        }
+      });
+    });
+
+    // Form Submission
+    document.getElementById('consultation-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      showToast('Pesan berhasil dikirim! Kami akan merespons segera.');
+      this.reset();
+    });
+
+    // Toast Notification
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+      
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+
+    // Theme Toggle
+    function toggleTheme() {
+      document.body.classList.toggle('light-mode');
+      const themeIcon = document.getElementById('theme-icon');
+      
+      if (document.body.classList.contains('light-mode')) {
+        themeIcon.className = 'fas fa-sun';
+      } else {
+        themeIcon.className = 'fas fa-moon';
+      }
+    }
+
+    // Image Error Handling
+    document.querySelectorAll('img').forEach(img => {
+      img.addEventListener('error', function() {
+        this.src = 'https://files.catbox.moe/8f392o.jpg';
+        this.alt = 'Gambar tidak tersedia';
+      });
+    });
+  </script>
+</body>
+</html>
